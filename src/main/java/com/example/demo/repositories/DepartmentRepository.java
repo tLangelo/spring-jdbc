@@ -8,12 +8,11 @@ import java.util.ArrayList;
 
 
 public class  DepartmentRepository {
-    DatabaseConnectionManager dbConnect = new DatabaseConnectionManager();
 
     public ArrayList<Department> getAllDepartments(){
         ArrayList<Department> allDepartments = new ArrayList<Department>();
         try {
-            PreparedStatement stmt = dbConnect.getConnection().prepareStatement("SELECT * FROM departments");
+            PreparedStatement stmt = DatabaseConnectionManager.getConnection().prepareStatement("SELECT * FROM departments");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Department tmp = new Department(
