@@ -1,17 +1,19 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.Department;
+import com.example.demo.utility.DatabaseConnectionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 
-public class DepartmentRepository {
+public class  DepartmentRepository {
+    DatabaseConnectionManager dbConnect = new DatabaseConnectionManager();
+
     public ArrayList<Department> getAllDepartments(){
         ArrayList<Department> allDepartments = new ArrayList<Department>();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_company", "dean", "securePassword");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM departments");
+            PreparedStatement stmt = dbConnect.getConnection().prepareStatement("SELECT * FROM departments");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Department tmp = new Department(
