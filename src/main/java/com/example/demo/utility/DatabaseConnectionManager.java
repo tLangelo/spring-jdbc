@@ -18,16 +18,13 @@ public class DatabaseConnectionManager {
         if(conn != null){
             return conn;
         }
-
-        try(InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
-            Properties properties = new Properties();
-            properties.load(stream);
-            url = properties.getProperty("db.url");
-            username = properties.getProperty("db.username");
-            password = properties.getProperty("db.password");
+        try{
+            url = "jdbc:mysql://localhost:3306/";
+            username = "root";
+            password = "hejsa";
             conn = DriverManager.getConnection(url, username, password);
-
-        } catch (SQLException | IOException e) {
+        }
+        catch(SQLException e){
             e.printStackTrace();
         }
         return conn;
