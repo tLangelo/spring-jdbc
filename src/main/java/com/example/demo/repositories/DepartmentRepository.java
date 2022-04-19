@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class  DepartmentRepository {
 
-    public ArrayList<Department> getAllDepartments() throws SQLException {
+    public ArrayList<Department> getAllDepartments() {
         return null;
     }
 }
