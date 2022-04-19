@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class  DepartmentRepository {
 
-    public ArrayList<Department> getAllDepartments(){
-       return null;
+    public ArrayList<Department> getAllDepartments() throws SQLException {
+        Connection conn = DriverManager.getConnection("");
     }
 }

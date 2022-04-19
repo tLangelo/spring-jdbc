@@ -10,12 +10,9 @@ import java.util.ArrayList;
 
 @Controller
 public class DepartmentController {
-    private DepartmentRepository departmentRepo = new DepartmentRepository();
 
     @GetMapping("/departments")
-    public String allDepartments(Model objectThatTransportsData){
-        ArrayList<Department> allDepartments = departmentRepo.getAllDepartments();
-        objectThatTransportsData.addAttribute("departments",allDepartments);
+    public String allDepartments(Model model){
         return "departments";
     }
 }
