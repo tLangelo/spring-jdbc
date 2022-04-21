@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+</head>
+<body>
+<h1>Register an employee</h1>
+
+<div>
+    <div>
+        <form class="signup-form" method="POST" action="/registeremp">
+            <input name="id" type="text" placeholder="ID" required/>
+            <input name="name" type="text" placeholder="Name" required/>
+            <input name="job" type="text" placeholder="Job" required/>
+            <input name="manager" type="text" placeholder="Manager" required/>
+            <input name="date" type="text" placeholder="Date" required/>
+            <input name="salary" type="text" placeholder="Salary" required/>
+            <input name="commission" type="text" placeholder="Commission" required/>
+            <input name="deptNum" type="text" placeholder="Department Number" required/>
+            <button type="submit">REGISTER</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

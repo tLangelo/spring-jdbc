@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Employees</title>
+  <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+</head>
+<body>
+<h1>An overview of our employees!</h1>
+
+<table>
+  <tr>
+    <th th:text="ID"/>
+    <th th:text="Name"/>
+    <th th:text="Job"/>
+    <th th:text="Manager"/>
+    <th th:text="Hiredate"/>
+    <th th:text="Salary"/>
+    <th th:text="Commission"/>
+    <th th:text="Dept.No."/>
+  </tr>
+  <tr
+         th:if="${employees != null}" th:each="employee : ${employees}">
+    <td th:text="${employee.getEID()}"></td>
+    <td th:text="${employee.getName()}"></td>
+    <td th:text="${employee.getJob()}"></td>
+    <td th:text="${employee.getManager()}"></td>
+    <td th:text="${employee.getHireDate()}"></td>
+    <td th:text="${employee.getSalary()}"></td>
+    <td th:text="${employee.getCommission()}"></td>
+    <td th:text="${employee.getDepartmentNumber()}"></td>
+  </tr>
+  <tr th:unless="${employees != null}">
+    <td th:text="${employeeToShow[0]}">
+    <td th:text="${employeeToShow[1]}">
+    <td th:text="${employeeToShow[2]}">
+    <td th:text="${employeeToShow[3]}">
+    <td th:text="${employeeToShow[4]}">
+    <td th:text="${employeeToShow[5]}">
+    <td th:text="${employeeToShow[6]}">
+    <td th:text="${employeeToShow[7]}">
+  </tr>
+</table>
+
+</body>
+</html>
