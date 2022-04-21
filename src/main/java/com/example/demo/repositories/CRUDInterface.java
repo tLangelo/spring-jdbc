@@ -10,6 +10,7 @@ public interface CRUDInterface <T>{
     //(R)ead
     public T getSingleEntityById(int id);
     public List<T> getAllEntities();
+    List<T> getEntitiesByIDs(int id);
 
     //(U)pdate
     public boolean update(T entity);

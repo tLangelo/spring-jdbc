@@ -12,81 +12,6 @@ public class EmployeeRepository implements CRUDInterface<Employee>{
     private Connection conn;
     private PreparedStatement update;
 
-    /*
-    public void addEmployee(Employee employee){
-        try{
-            conn = DatabaseConnectionManager.getConnection();
-
-            update = conn.prepareStatement("insert into employees values(?,?,?)");
-            update.setInt(1, employee.getEID());
-            update.setString(2,employee.getName());
-            update.setInt(3, employee.getAge());
-            System.out.println(employee.getName() + " has been added");
-
-            conn.close();
-        }catch(SQLException e){
-            System.out.println("in employeeRepo");
-            e.printStackTrace();
-        }
-    }
-
-    public ArrayList<Employee> getEmployees(){
-        ArrayList<Employee> employees = new ArrayList<>();
-        String query;
-
-        try{
-            conn = DatabaseConnectionManager.getConnection();
-
-            Statement stmt = conn.createStatement();
-            query = "select * from employees";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while(rs.next()){
-                int EID = rs.getInt("id");
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-
-                employees.add(new Employee(EID,name,age));
-            }
-        return employees;
-
-        }catch(SQLException e){
-            System.out.println("in employeeRepo");
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Employee getEmployeeByID(int id){
-        String query;
-        Employee emp = null;
-
-        try{
-            conn = DatabaseConnectionManager.getConnection();
-
-            Statement stmt = conn.createStatement();
-            query = "select * from employees where id = '" + id + "';";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while(rs.next()){
-                int EID = rs.getInt("id");
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-
-                emp = new Employee(EID,name,age);
-
-            }
-        return emp;
-
-        }catch(SQLException e){
-            System.out.println("in employeeRepo");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    */
 
     @Override
     public boolean create(Employee employee) {
@@ -105,7 +30,6 @@ public class EmployeeRepository implements CRUDInterface<Employee>{
                 update.setInt(8, employee.getDepartmentNumber());
                 update.executeUpdate();
                 System.out.println(employee.getName() + " has been added");
-                conn.close();
                 return true;
             } catch (SQLException e) {
                 System.out.println("in employeeRepo - method:create()");
@@ -184,6 +108,42 @@ public class EmployeeRepository implements CRUDInterface<Employee>{
     }
 
     @Override
+    public List<Employee> getEntitiesByIDs(int id) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        String query;
+
+        try{
+            conn = DatabaseConnectionManager.getConnection();
+
+            Statement stmt = conn.createStatement();
+            query = "select * from employees where department_number = '" + id + "';";
+            ResultSet rs = stmt.executeQuery(query);
+
+            while(rs.next()){
+                int EID = rs.getInt("id");
+                String name = rs.getString("employee_name");
+                String job = rs.getString("job");
+                int manager = rs.getInt("manager");
+                String hireDate = rs.getString("hiredate");
+                int salary = rs.getInt("salary");
+                int commission = rs.getInt("commission");
+                int deptNum = rs.getInt("department_number");
+
+
+                employees.add(new Employee(EID,name,job,manager,hireDate,salary,commission,deptNum));
+            }
+            return employees;
+
+        }catch(SQLException e){
+            System.out.println("in employeeRepo - method:getEntitiesByDep()");
+
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public boolean update(Employee entity) {
         return false;
     }
@@ -192,4 +152,6 @@ public class EmployeeRepository implements CRUDInterface<Employee>{
     public boolean deleteById(int id) {
         return false;
     }
+
+
 }

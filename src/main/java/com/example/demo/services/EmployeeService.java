@@ -23,4 +23,8 @@ public class EmployeeService {
         return empRepo.getSingleEntityById(id);
     }
 
+    public ArrayList<Employee> getEmployeesByDep(int id){
+        return (ArrayList<Employee>) empRepo.getEntitiesByIDs(id);
+    }
+
 }

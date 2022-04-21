@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Employees</title>
-  <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+  <link rel="stylesheet" th:href="@{/style.css}"  type="text/css">
 </head>
 <body>
 <h1>An overview of our employees!</h1>
@@ -30,6 +30,8 @@
     <td th:text="${employee.getCommission()}"></td>
     <td th:text="${employee.getDepartmentNumber()}"></td>
   </tr>
+
+
   <tr th:unless="${employees != null}">
     <td th:text="${employeeToShow[0]}">
     <td th:text="${employeeToShow[1]}">
@@ -41,6 +43,13 @@
     <td th:text="${employeeToShow[7]}">
   </tr>
 </table>
+<ul>
+  <form method="GET" th:action="@{/register}">
+    <td><button type="submit">Register employee</button></td>
+  </form>
+</ul>
 
+
+<footer><a th:href="@{/}"> < Go back </a></footer>
 </body>
 </html>

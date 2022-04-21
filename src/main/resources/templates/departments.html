@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Departments</title>
-    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{/style.css}"  type="text/css">
 </head>
 <body>
     <h1>An overview of our departments</h1>
     <table>
-        <tr
-            th:each="department : ${departments}">
-            <td th:text="${department.getDeptno()}"></td>
-            <td th:text="${department.getDeptName()}"></td>
-            <td th:text="${department.getLocation()}"></td>
+        <tr>
+            <th th:text="No."/>
+            <th th:text="Name"/>
+            <th th:text="Location"/>
+            <th th:text="v"/>
         </tr>
+
+
+        <tr th:each="department : ${departments}">
+            <form method="GET" th:action="@{/departments/{depName}(depName = ${department.getDeptno()})}">
+                <td th:text="${department.getDeptno()}"></td>
+                <td th:text="${department.getDeptName()}"></td>
+                <td th:text="${department.getLocation()}"></td>
+                <td><button type="submit"><</button></td>
+            </form>
+        </tr>
+
     </table>
+    <footer><a th:href="@{/}"> < Go back </a></footer>
 </body>
 </html>

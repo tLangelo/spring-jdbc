@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 
 @Controller
 public class EmployeeController {
-    EmployeeService es = new EmployeeService();
+    private final EmployeeService es = new EmployeeService();
 
     @GetMapping("/employees")
     public String allEmployees(Model m){
